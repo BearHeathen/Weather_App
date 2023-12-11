@@ -4,9 +4,6 @@ import requests
 from datetime import datetime
 from dotenv import load_dotenv
 import os
-
-
-
 import tkintermapview
 
 # Initialize Window
@@ -22,11 +19,9 @@ root.title("Weather App - bearheathen v0.0.1")
 # ----------------------Functions to fetch and display weather info
 city_value = StringVar()
 
-
 def time_format_for_location(utc_with_tz):
     local_time = datetime.utcfromtimestamp(utc_with_tz)
     return local_time.time()
-
 
 def showWeather():
     # Enter you api key, copies from the OpenWeatherMap dashboard
@@ -45,7 +40,6 @@ def showWeather():
 
     # changing response from json to python readable
     weather_info = response.json()
-    print(weather_info)
 
     tfield.delete("1.0", "end")  # to clear the text field for every new output
 
@@ -77,14 +71,10 @@ def showWeather():
         tfield.insert(INSERT, weather)  # to insert or send value in our Text Field to display output
         createMap(lat, lon)
     else:
-        weather = f"\n\tWeather for '{city_name}' not found!\n\tKindly Enter valid City Name !!"
+        weather = f"\n\tWeather for '{city_name}' not found!\n\tKindly Enter valid City Name!"
         lat = 0
         lon = 0
         return lat, lon
-
-
-
-
 
 # ------------------------------Frontend part of code - Interface
 
@@ -102,8 +92,7 @@ tfield = Text(root, width=40, height=10)
 tfield.pack()
 
 lat, lon = showWeather()
-print(lat)
-print(lon)
+
 # create map widget
 def createMap(lat, lon):
     latitude = lat
